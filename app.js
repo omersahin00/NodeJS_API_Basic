@@ -3,7 +3,7 @@ const app = express();
 const sequelize = require("./data/db");
 
 // Routers:
-const router = require("./restApi/index");
+const router = require("./restApi/product/index");
 
 // Middlewares:
 app.use(express.json());

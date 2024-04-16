@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("../models/product");
-const schema = require("../validation/product/product");
+const Product = require("../../models/product");
+const schema = require("../../validation/product/product");
 
 router.get("/api/product", async (req, res) => {
     try {

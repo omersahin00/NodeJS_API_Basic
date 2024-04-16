@@ -3,17 +3,17 @@ const Config = require("../constants/config");
 
 const sequelize = new Sequelize(Config.db.database, Config.db.user, Config.db.password, {
     host: Config.db.host,
-    dialect: "mysql",
+    dialect: "mssql",
     define: {
         timestamps: false
     },
-    storage: "./session/mysql"
+    storage: "./session/mssql"
 });
 
 connect = async () => {
     try {
         await sequelize.authenticate();
-        console.log("MySQL Server connection was established.");
+        console.log("MsSQL Server connection was established.");
     }
     catch (error) {
         console.log("Connection loss: ", error);
