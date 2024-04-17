@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../../models/product");
-const schema = require("../../validation/product/product");
-const { where } = require("sequelize");
+const validateProduct = require("../../validation/product/product");
 
 router.get("/api/product", async (req, res) => {
     try {
@@ -32,7 +31,7 @@ router.get("/api/product", async (req, res) => {
 
 router.post("/api/product", async (req, res) => {
     try {
-        const result = schema.validate(req.body);
+        const result = validateProduct(req.body);
 
         if (result.error) {
             return res.status(400)
@@ -93,7 +92,7 @@ router.get("/api/product/:id", async (req, res) => {
 
 router.put("/api/product/:id", async (req, res) => {
     try {
-        const result = schema.validate(req.body);
+        const result = validateProduct(req.body);
 
         if (result.error) {
             return res.status(400)
