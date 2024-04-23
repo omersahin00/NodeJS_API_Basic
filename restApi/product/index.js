@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../../models/product");
 const validateProduct = require("../../validation/product/product");
+const { where } = require("sequelize");
 
 router.get("/api/product", async (req, res) => {
     try {
@@ -126,6 +127,38 @@ router.put("/api/product/:id", async (req, res) => {
             product: product[0],
             message: `#${id} id numaralı ürün bilgileri güncellendi.`
         });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500)
+        .send({
+            message: "Bir hata oluştu!"
+        });
+    }
+});
+
+router.delete("/api/product/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+
+        const result = await Product.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        if (result === 1) {
+            return res.status(200)
+            .send({
+                message: `#${id} id'li ürün silindi.`
+            });
+        }
+        else {
+            return res.status(404)
+            .send({
+                message: `#${id} id'li ürün bulunamadı!`
+            });
+        }        
     }
     catch (error) {
         console.log(error);
