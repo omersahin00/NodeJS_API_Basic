@@ -3,11 +3,11 @@ const app = express();
 const sequelize = require("./data/db");
 
 // Routers:
-const routerProduct = require("./restApi/product/index");
+const routes = require("./restApi/index");
 
 // Middlewares:
 app.use(express.json());
-app.use("/api/product", routerProduct);
+app.use(routes);
 
 // Models:
 require("./models/product");
