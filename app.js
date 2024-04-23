@@ -1,13 +1,18 @@
 const express = require("express");
 const app = express();
 const sequelize = require("./data/db");
+const cors = require("cors");
 
 // Routers:
 const routes = require("./restApi/index");
+app.use(routes);
 
 // Middlewares:
 app.use(express.json());
-app.use(routes);
+app.use(cors({
+    origin: "*",
+    methods: "*"
+}));
 
 // Models:
 require("./models/product");
