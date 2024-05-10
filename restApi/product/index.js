@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const result = validateProduct(req.body);
-
+        
         if (result.error) {
             return res.status(400)
             .send({

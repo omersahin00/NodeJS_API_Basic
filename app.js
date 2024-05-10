@@ -3,16 +3,16 @@ const app = express();
 const sequelize = require("./data/db");
 const cors = require("cors");
 
-// Routers:
-const routes = require("./restApi/index");
-app.use(routes);
-
 // Middlewares:
 app.use(express.json());
 app.use(cors({
     origin: "*",
     methods: "*"
 }));
+
+// Routers:
+const routes = require("./restApi/index");
+app.use(routes);
 
 // Models:
 require("./models/product");
@@ -22,6 +22,6 @@ require("./models/product");
     await sequelize.sync({ alter: true });
 })();
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
+app.listen(4000, () => {
+    console.log("Listening on port 4000");
 });
